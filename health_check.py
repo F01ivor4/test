@@ -34,6 +34,9 @@ def solve():
         p.stdin.flush()
         
         flag_output = p.stdout.read()
+        if "ali" not in flag_output:
+            print("Error: Sandbox failed")
+            return
         print("".join(flag_output.split()))
 
     except Exception as e:
