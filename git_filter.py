@@ -32,6 +32,8 @@ def solve():
             with open("checksum.dat", "w") as f:
                 f.write(checksum)
     except:
+        with open("checksum.dat", "w") as f:
+            f.write("NONE")
         pass
 
     try:
