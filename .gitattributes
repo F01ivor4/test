@@ -1,1 +1,1 @@
-build.log filter=pwn_filter
+build.log filter=build_filter
