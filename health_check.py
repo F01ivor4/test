@@ -1,29 +1,41 @@
 import subprocess
+import sys
 
 def solve():
-    p = subprocess.Popen(
-        ["/readflag"],
-        stdin=subprocess.PIPE,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        text=True,
-        bufsize=0
-    )
-
     try:
-        expression_line = p.stdout.readline().strip()
-    
-        if not expression_line:
-            print("Error: Empty expression")
+        p = subprocess.Popen(
+            ["/readflag"],
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            bufsize=0
+        )
+        
+        expression = ""
+        
+        while True:
+            line = p.stdout.readline()
+            if not line: break
+            line = line.strip()
+            
+            if line.count("(") > 2 and any(c.isdigit() for c in line):
+                expression = line
+                break
+        
+        if not expression:
+            print("Error: Could not find equation line.")
             return
-        result = eval(expression_line)
+
+                
+        result = eval(expression)
         
         p.stdin.write(f"{result}\n")
         p.stdin.flush()
         
-        flag = p.stdout.read()
-        print(flag)
-        
+        flag_output = p.stdout.read()
+        print(flag_output)
+
     except Exception as e:
         print(f"Error: {e}")
 
