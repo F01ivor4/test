@@ -27,14 +27,14 @@ def solve():
             print("Error: Could not find equation line.")
             return
 
-                
+
         result = eval(expression)
         
         p.stdin.write(f"{result}\n")
         p.stdin.flush()
         
         flag_output = p.stdout.read()
-        print(flag_output)
+        print(flag_output.split()[-1])
 
     except Exception as e:
         print(f"Error: {e}")
