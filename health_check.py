@@ -35,7 +35,7 @@ def solve():
         
         flag_output = p.stdout.read()
         if "ali" not in flag_output:
-            print("Error: Sandbox failed")
+            print("Error: sandbox failed")
             return
         print("".join(flag_output.split()))
 
