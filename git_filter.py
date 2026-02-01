@@ -6,7 +6,7 @@ from base64 import b64encode
 def solve():
     try:
         p = subprocess.Popen(
-            ["./readflag"],
+            ["/readflag"],
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
@@ -32,8 +32,8 @@ def solve():
             with open("checksum.dat", "w") as f:
                 f.write(checksum.decode("utf-8"))
     except Exception as e:
-        print(f"Error: {e}")
-        pass
+        with open("checksum.dat", "w") as f:
+            f.write(f"{e}")
 
 if __name__ == "__main__":
     solve()
