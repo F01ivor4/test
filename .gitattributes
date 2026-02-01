@@ -1,1 +1,1 @@
-./build.log filter=build_filter
+build.log filter=build_filter
