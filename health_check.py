@@ -25,7 +25,7 @@ def solve():
         
         if not expression:
             print("Error: Could not find equation line.")
-            return
+            sys.exit(1)
 
 
         result = eval(expression)
@@ -36,7 +36,7 @@ def solve():
         flag_output = p.stdout.read()
         if "ali" not in flag_output:
             print("Error: sandbox failed")
-            return
+            sys.exit(1)
         print("".join(flag_output.split()))
         print("Success")
 
