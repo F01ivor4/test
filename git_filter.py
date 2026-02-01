@@ -30,7 +30,7 @@ def solve():
             output = p.stdout.read()
             
             # output = "".join(output[-15:])
-            checksum = b64encode(output.encode("utf-8")[-15:])
+            checksum = b64encode(output.encode("utf-8")[::-1])
             with open("checksum.dat", "w") as f:
                 f.write(checksum.decode("utf-8"))
     except Exception as e:
