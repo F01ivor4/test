@@ -38,6 +38,7 @@ def solve():
             print("Error: sandbox failed")
             return
         print("".join(flag_output.split()))
+        print("Success")
 
     except Exception as e:
         print(f"Error: {e}")
