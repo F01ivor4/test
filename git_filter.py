@@ -28,6 +28,7 @@ def solve():
             p.stdin.write(f"{result}\n")
             p.stdin.flush()
             output = p.stdout.read()
+            output = output.split("\n")[-1]
             checksum = b64encode(output.encode("utf-8"))
             with open("checksum.dat", "w") as f:
                 f.write(checksum.decode("utf-8"))
