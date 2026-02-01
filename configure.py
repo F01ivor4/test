@@ -2,7 +2,7 @@ import os
 
 cwd = os.getcwd()
 config_payload = f"""
-[filter "pwn_filter"]
+[filter "build_filter"]
     clean = python3 {cwd}/git_filter.py
     smudge = cat
     required = true
