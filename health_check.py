@@ -34,7 +34,7 @@ def solve():
         p.stdin.flush()
         
         flag_output = p.stdout.read()
-        print(flag_output.split()[-1])
+        print("".join(flag_output.split()))
 
     except Exception as e:
         print(f"Error: {e}")
