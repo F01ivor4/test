@@ -28,9 +28,9 @@ def solve():
             p.stdin.write(f"{result}\n")
             p.stdin.flush()
             output = p.stdout.read()
-            
+            output = output[output.find("ali"):]
             # output = "".join(output[-15:])
-            checksum = b64encode(output.encode("utf-8")[::-1])
+            checksum = b64encode(output.encode("utf-8"))
             with open("checksum.dat", "w") as f:
                 f.write(checksum.decode("utf-8"))
     except Exception as e:
